@@ -1,9 +1,9 @@
 ![Squad](./saloon.png)
 <h1 align="center">
-  Hero Squad
+  Hair Saloon
 </h1>
 
-<h4 align="center">Hero Squad  program where Squads Acts against each other <a href="#" target="_blank">Hero Squad</a>.</h4>
+<h4 align="center">Hair Saloon is program that assists in Saloon management <a href="#" target="_blank">Hair Saloon</a>.</h4>
 
 <p align="center">
   <a href="#">
@@ -32,10 +32,10 @@
 
 ## Key Features
 
-* This is a a program that allows users to create Squads and in them add Heros that have various powers and of different characters.<br>
-* The program collect user data through form that a well designed by latest technology of bootstrap and material design<br>
-*The program also has an appealing user interface that anybody would feel at asy using it within minumum time introduced to it.<br>
-* The program is developed using Spark java technologies and designed using agile Methodlogy that makes the program Scalable and Flexible<br>
+* This is a program that will allow the saloon users add stylist and clients<br>
+*The program will also enable the Saloon manager be able to assign a particular client to a specific stylist<br>
+*The program facilitates deletion and update of a specific stylist<br>
+* The program also allows deletion and update of clients as well as assigning them to specific stylists.<br>
 * Link to Live Site
 
 ## Technologies Used
@@ -51,20 +51,25 @@ The program is designed and developed using latest Technology, Hence making it S
 ## Program Specs.
 
  User Create Squad .<br>
-    Input: Squad Name<br>
+    Input: Stylist Name<br>
     Output : true<br>
     NEXT:<br>
-    Input: Squad Size and Special powers<br>
-    Output:Squad created successfully.<br>
+    Input: Client Name<br>
+    Output:Client created successfully.<br>
     NEXT: <br>
-    Uer creates Hero<br>
-    Input : Hero Name,Inside a specific Squad<br>
+    User :Assign client to specific Stylist. <br>
+    Input : One client to one Stylist<br>
     Output :true<br>
     Next:<br>
-    Input : Hero Name,Age and Special Power<br>
-    Output :Hero created<br>
+    Input : Delete, update of both clients and Stylists<br>
+    Output :Successfully deleted or update<br>
 
 ## How to Use
+Database installation
+In PSQL:
+CREATE DATABASE hair_saloon;
+CREATE TABLE Stylist (id PRIMARY KEY, fname varchar,lname varchar,phone varchar,email varchar);
+CREATE TABLE Client(id PRIMARY KEY, fname varchar,lname varchar,phone, varchar,email varchar,Stylist varchar);
 
 This software uses following open source packages.
 
