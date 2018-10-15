@@ -75,5 +75,24 @@ public class App {
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
 
+        post("/updateStylist",(req,res)->{
+            System.out.println(model.get("id"));
+            String str=(String) model.get("id");
+            try{
+                db.getCon().createQuery("UPDATE stylist SET fname=:fname,lname=:lname,phone=:phone,email=:email WHERE id=:id;")
+                        .addParameter("fname",req.queryParams("fname"))
+                        .addParameter("lname",req.queryParams("lname"))
+                        .addParameter("phoneno",req.queryParams("phone"))
+                        .addParameter("email",req.queryParams("email"))
+                        .addParameter("id",Double.parseDouble(str))
+                        .executeUpdate();
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+            res.redirect("/");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
     }
 }
