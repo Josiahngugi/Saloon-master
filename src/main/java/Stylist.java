@@ -28,4 +28,15 @@ public class Stylist {
         return this.email;
     }
 
+    public  boolean  save(){
+        db.getCon().createQuery("INSERT INTO stylist (id,fname,lname,phone,email) VALUES(:id,:fname,:lname,:phone,:email)")
+                .addParameter("id",id)
+                .addParameter("fname",fname)
+                .addParameter("lname",lname)
+                .addParameter("phone",phone)
+                .addParameter("email",email)
+                .executeUpdate();
+        return true;
+    }
+
 }
