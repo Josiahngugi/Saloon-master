@@ -9,7 +9,7 @@ import static spark.Spark.post;
 
 
 public class App {
-    static DB db=new DB();
+    static Db db=new Db();
     static Map<String,Object> model=new HashMap<String,Object>();
     public static void main(String[]args){
         get("/",(req,res)->{
