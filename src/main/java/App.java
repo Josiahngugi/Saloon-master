@@ -101,5 +101,11 @@ public class App {
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
 
+        get("/getClients",(req,res)->{
+            model.put("clients",db.getCon().createQuery("SELECT * FROM client;").executeAndFetch(Client.class));
+            model.put("template","templates/clients.vtl");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
     }
 }
