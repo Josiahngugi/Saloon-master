@@ -68,5 +68,12 @@ public class App {
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
 
+        get("/updateStylist/:stylist/:id",(req,res)->{
+            model.put("update",req.params(":stylist"));
+            model.put("id",req.params(":id"));
+            model.put("template","templates/updateStylist.vtl");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
     }
 }
