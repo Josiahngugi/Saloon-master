@@ -40,3 +40,25 @@
 
         </div>
     </div>
+    <div class="col-sm-12 col-md-6">
+
+        <h1 class="text-center">$stylist.getFname() Clients'</h1>
+        <div>
+            <hr>
+            #foreach($client in $clients)
+            <ul>
+                <li>
+                    <h3>$client.getFname() $client.getLname()</h3>
+                    <h4>$client.getPhone()</h4>
+                    <h4>$client.getEmail()</h4>
+                    <p>
+                        <a href="/updateClient/:client/:id"class="btn btn-success">Update Client</a>
+                        <a href="/deleteClient/$client.getId()/$stylist.getId()" class="btn btn-danger btn-md"> Delete Client</a>
+                    </p>
+                    <hr>
+                </li>
+            </ul>
+            #end
+        </div>
+    </div>
+</div>
