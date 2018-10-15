@@ -1,0 +1,24 @@
+<h2>Upadate Details For $update</h2>
+<form action="/updateClient" method="post">
+    <div class="form-group">
+        <input type="text" name="fname" value="" class="form-control" placeholder="First Name" required>
+    </div>
+    <div class="form-group">
+        <input type="text" name="lname" value="" class="form-control" placeholder="Last Name" required>
+    </div>
+    <div class="form-group">
+        <input  list="stylist" name="stylist" class="form-control"/>
+        <datalist id="stylist">
+            #foreach($stylist in $stylists)
+            <option value="$stylist.getId()">$stylist.getFname() $stylist.getLname()</option>
+            #end
+        </datalist>
+    </div>
+    <div class="form-group">
+        <input type="text" name="phone" value="" class="form-control" placeholder="Phone Number" required>
+    </div>
+    <div class="form-group">
+        <input type="email" name="email" value="" class="form-control" placeholder="Email Address" required>
+    </div>
+    <button type="submit" class="btn btn-success btn-md">Add Client</button>
+</form>
