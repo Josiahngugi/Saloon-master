@@ -34,7 +34,6 @@ public  class Client{
     }
 
     public  boolean  save(){
-        try{
             db.getCon().createQuery("INSERT INTO client (fname,lname,phone,email,stylist) VALUES(:fname,:lname,:phone,:email,:stylist)")
                     .addParameter("fname",fname)
                     .addParameter("lname",lname)
@@ -44,9 +43,5 @@ public  class Client{
                     .executeUpdate();
             return true;
         }
-        catch(Exception ex){
-            System.out.println(ex.getMessage());
-            return false;
-        }
     }
-}
+
