@@ -66,7 +66,7 @@ The program is designed and developed using latest Technology, Hence making it S
     Output :Successfully deleted or update<br>
 
 ## How to Use
-`Database installation<br>
+`Database installation
 In PSQL:
 CREATE DATABASE hair_saloon;
 CREATE TABLE Stylist (id PRIMARY KEY, fname varchar,lname varchar,phone varchar,email varchar);
