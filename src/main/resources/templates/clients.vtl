@@ -1,0 +1,18 @@
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6">
+        <div class="">
+            #foreach($client in $clients)
+            <div class="">
+                <h2 class="text-success"> $client.getFname() &nbsp; $client.getLname()</h2>
+                <br>
+                <h2>Phone no.:$client.getPhone()</h2>
+                <h2>Email:$client.getEmail()</h2>
+                    <h2>Stylist:$client.getStylist()<br></h2>
+                    <p><a href="/updateClient/$client.getFname()/$client.getId()" class="btn btn-info"> Update Client</a>
+                        <a href="/deleteClient/:client/:stylist" class="btn btn-danger">Delete</a></p>
+                    <hr>
+            </div>
+            #end
+        </div>
+    </div>
+</div>
