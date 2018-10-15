@@ -23,4 +23,9 @@ public class Db {
                 .addParameter("id",id)
                 .executeAndFetchFirst(Stylist.class);
     }
+    public List<Client> getClients(double id){
+        return con.createQuery("SELECT id,fname,lname,phone,email,stylist FROM client  WHERE stylist=:id;")
+                .addParameter("id",id)
+                .executeAndFetch(Client.class);
+    }
 }
