@@ -1,4 +1,5 @@
 ![Squad](./saloon.png)
+<img src="https://github.com/Josiahngugi/Saloon-master/blob/master/Saloon.png" alt="Hair Saloon">
 <h1 align="center">
   Hair Saloon
 </h1>
