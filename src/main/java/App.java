@@ -6,12 +6,10 @@ import java.util.Map;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
-
-
-public class App {
+public  class App{
     static Db db=new Db();
     static Map<String,Object> model=new HashMap<String,Object>();
-    public static void main(String[]args){
+    public static void main(String[] args) {
         get("/",(req,res)->{
             model.put("stylists",null);
             model.put("stylists",db.all());
@@ -114,6 +112,5 @@ public class App {
             model.put("template","templates/updateClients.vtl");
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
-
     }
 }

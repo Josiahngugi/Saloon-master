@@ -1,24 +1,18 @@
-<h2>Upadate Details For $update</h2>
-<form action="/updateClient" method="post">
-    <div class="form-group">
-        <input type="text" name="fname" value="" class="form-control" placeholder="First Name" required>
-    </div>
-    <div class="form-group">
-        <input type="text" name="lname" value="" class="form-control" placeholder="Last Name" required>
-    </div>
-    <div class="form-group">
-        <input  list="stylist" name="stylist" class="form-control"/>
-        <datalist id="stylist">
-            #foreach($stylist in $stylists)
-            <option value="$stylist.getId()">$stylist.getFname() $stylist.getLname()</option>
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6">
+        <div class="">
+            #foreach($client in $clients)
+            <div class="">
+                <h2 class="text-success"> $client.getFname() &nbsp; $client.getLname()</h2>
+                <br>
+                <h2>Phone no.:$client.getPhone()</h2>
+                <h2>Email:$client.getEmail()</h2>
+                <h2>Stylist:$client.getStylist()<br></h2>
+                <p><a href="/updateClient/$client.getFname()/$client.getId()" class="btn btn-info"> Update Client</a>
+                    <a href="/deleteClient/:client/:stylist" class="btn btn-danger">Delete</a></p>
+                <hr>
+            </div>
             #end
-        </datalist>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="text" name="phone" value="" class="form-control" placeholder="Phone Number" required>
-    </div>
-    <div class="form-group">
-        <input type="email" name="email" value="" class="form-control" placeholder="Email Address" required>
-    </div>
-    <button type="submit" class="btn btn-success btn-md">Add Client</button>
-</form>
+</div>

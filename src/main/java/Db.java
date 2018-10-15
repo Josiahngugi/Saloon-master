@@ -1,9 +1,6 @@
-import org.sql2o.Connection;
-import org.sql2o.Sql2o;
-
-import java.util.List;
-
-public class Db {
+import org.sql2o.*;
+import  java.util.List;
+public class Db{
     private Connection con;
     public Db(){
         con=new Sql2o("jdbc:postgresql://localhost:5432/hair_saloon","josiah","@J706643731m").open();
@@ -18,6 +15,7 @@ public class Db {
     public List<Stylist> all(){
         return con.createQuery("SELECT id,fname,lname,phone,email FROM stylist;").executeAndFetch(Stylist.class);
     }
+
     public Stylist getStylist(double id){
         return con.createQuery("SELECT id,fname,lname,phone,email FROM stylist  WHERE id=:id;")
                 .addParameter("id",id)
