@@ -26,16 +26,47 @@ public  class App{
                     req.queryParams("phone"),
                     req.queryParams("email")
             );
-            System.out.println(stylist.getPhone());
-            if(stylist.save()){
-                model.put("message","Successfully Added ");
-            }
-            else{
-                model.put("message","Stylist Exists");
-            }
+
             res.redirect("/");
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
+
+        get("/deleteStylist/:stylist",(req,res)->{
+            String SQL="DELETE FROM  stylist WHERE id="+req.params(":stylist");
+            db.executeCommand(SQL);
+            res.redirect("/");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
+        post("/updateStylist",(req,res)->{
+            System.out.println(model.get("id"));
+            String str=(String) model.get("id");
+            db.getCon().createQuery("UPDATE stylist SET fname=:fname,lname=:lname,phone=:phone,email=:email WHERE id=:id;")
+                    .addParameter("fname",req.queryParams("fname"))
+                    .addParameter("lname",req.queryParams("lname"))
+                    .addParameter("phone",req.queryParams("phone"))
+                    .addParameter("email",req.queryParams("email"))
+                    .addParameter("id",Double.parseDouble(str))
+                    .executeUpdate();
+
+            res.redirect("/");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
+        get("/getDetails/:id",(req,res)->{
+            model.put("stylist",db.getStylist(Double.parseDouble(req.params(":id"))));
+            model.put("clients",db.getClients(Double.parseDouble(req.params(":id"))));
+            model.put("template","templates/Stylistinfo.vtl");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
+        get("/updateStylist/:stylist/:id",(req,res)->{
+            model.put("update",req.params(":stylist"));
+            model.put("id",req.params(":id"));
+            model.put("template","templates/updateStylist.vtl");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
 
         post("/addClient",(req,res)->{
             System.out.println(req.queryParams("stylist"));
@@ -52,53 +83,6 @@ public  class App{
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
 
-        get("/deleteStylist/:stylist",(req,res)->{
-            String SQL="DELETE FROM  stylist WHERE id="+req.params(":stylist");
-            db.executeCommand(SQL);
-            res.redirect("/");
-            return new ModelAndView(model,"templates/layout.vtl");
-        },new VelocityTemplateEngine());
-
-        get("/deleteClient/:client/:stylist",(req,res)->{
-            String SQL="DELETE FROM  client WHERE id="+req.params(":client");
-            db.executeCommand(SQL);
-            res.redirect("/getDetails/"+req.params(":stylist"));
-            return new ModelAndView(model,"templates/layout.vtl");
-        },new VelocityTemplateEngine());
-
-        get("/updateStylist/:stylist/:id",(req,res)->{
-            model.put("update",req.params(":stylist"));
-            model.put("id",req.params(":id"));
-            model.put("template","templates/updateStylist.vtl");
-            return new ModelAndView(model,"templates/layout.vtl");
-        },new VelocityTemplateEngine());
-
-        post("/updateStylist",(req,res)->{
-            System.out.println(model.get("id"));
-            String str=(String) model.get("id");
-            try{
-                db.getCon().createQuery("UPDATE stylist SET fname=:fname,lname=:lname,phone=:phone,email=:email WHERE id=:id;")
-                        .addParameter("fname",req.queryParams("fname"))
-                        .addParameter("lname",req.queryParams("lname"))
-                        .addParameter("phoneno",req.queryParams("phone"))
-                        .addParameter("email",req.queryParams("email"))
-                        .addParameter("id",Double.parseDouble(str))
-                        .executeUpdate();
-            }
-            catch(Exception ex){
-                System.out.println(ex.getMessage());
-            }
-            res.redirect("/");
-            return new ModelAndView(model,"templates/layout.vtl");
-        },new VelocityTemplateEngine());
-
-        get("/getDetails/:id",(req,res)->{
-            model.put("stylist",db.getStylist(Double.parseDouble(req.params(":id"))));
-            model.put("clients",db.getClients(Double.parseDouble(req.params(":id"))));
-            model.put("template","templates/Stylistinfo.vtl");
-            return new ModelAndView(model,"templates/layout.vtl");
-        },new VelocityTemplateEngine());
-
         get("/getClients",(req,res)->{
             model.put("clients",db.getCon().createQuery("SELECT * FROM client;").executeAndFetch(Client.class));
             model.put("template","templates/clients.vtl");
@@ -110,6 +94,13 @@ public  class App{
             model.put("id",req.params(":id"));
             model.put("stylists",db.getCon().createQuery("SELECT * FROM stylist;"));
             model.put("template","templates/updateClients.vtl");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
+        get("/deleteClient/:client/:stylist",(req,res)->{
+            String SQL="DELETE FROM  client WHERE id="+req.params(":client");
+            db.executeCommand(SQL);
+            res.redirect("/getDetails/"+req.params(":stylist"));
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
     }
