@@ -107,5 +107,13 @@ public class App {
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
 
+        get("/updateClient/:client/:id",(req,res)->{
+            model.put("update",req.params(":client"));
+            model.put("id",req.params(":id"));
+            model.put("stylists",db.getCon().createQuery("SELECT * FROM stylist;"));
+            model.put("template","templates/updateClients.vtl");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
     }
 }
