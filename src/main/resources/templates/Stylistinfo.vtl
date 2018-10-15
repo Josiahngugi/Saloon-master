@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-6">
+
+        <h1 class="text-center">Personal infomation</h1>
+        <hr>
+        <h3>Name:<span class="text-info">$stylist.getFname() &nbsp; $stylist.getLname()</span></h3>
+        <h3>Phone:<span class="text-info">$stylist.getPhone()</span></h3>
+        <h3>Email:<span class="text-info">$stylist.getEmail()</span></h3>
+        <p>
+            <a href="/updateStylist/$stylist.getFname()/$stylist.getId()" class="btn btn-info btn-md"> Update Stylist</a>
+
+            <a href="/deleteStylist/$stylist.getId()" class="btn btn-danger btn-md"> Delete Stylist</a>
+        </p>
+        <div class="text-center">
+            <hr>
+            <h1 class="text-center">Add new client</h1>
+            <div class="text-center">
+                <form action="/addClient" method="post">
+                    <div class="form-group">
+                        <input type="text" name="fname" value="" class="form-control" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="lname" value="" class="form-control" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="phone" value="" class="form-control" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" value="" class="form-control" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input  list="stylist" name="stylist" class="form-control"/>
+                        <datalist id="stylist">
+                            <option value="$stylist.getId()">$stylist.getFname() $stylist.getLname()</option>
+                        </datalist>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-md">Add Client</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
