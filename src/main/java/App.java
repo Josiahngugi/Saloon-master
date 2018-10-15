@@ -1,4 +1,3 @@
-import com.sun.security.ntlm.Client;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -54,5 +53,20 @@ public class App {
             res.redirect("/getDetails/"+req.queryParams("stylist"));
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
+
+        get("/deleteStylist/:stylist",(req,res)->{
+            String SQL="DELETE FROM  stylist WHERE id="+req.params(":stylist");
+            db.executeCommand(SQL);
+            res.redirect("/");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
+        get("/deleteClient/:client/:stylist",(req,res)->{
+            String SQL="DELETE FROM  client WHERE id="+req.params(":client");
+            db.executeCommand(SQL);
+            res.redirect("/getDetails/"+req.params(":stylist"));
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
     }
 }
