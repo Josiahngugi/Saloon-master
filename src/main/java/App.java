@@ -1,3 +1,4 @@
+import com.sun.security.ntlm.Client;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -36,6 +37,21 @@ public class App {
                 model.put("message","Stylist Exists");
             }
             res.redirect("/");
+            return new ModelAndView(model,"templates/layout.vtl");
+        },new VelocityTemplateEngine());
+
+        post("/addClient",(req,res)->{
+            System.out.println(req.queryParams("stylist"));
+            Client client=new Client(
+                    1,
+                    req.queryParams("fname"),
+                    req.queryParams("lname"),
+                    req.queryParams("phone"),
+                    req.queryParams("email"),
+                    Double.parseDouble(req.queryParams("stylist"))
+            );
+            client.save();
+            res.redirect("/getDetails/"+req.queryParams("stylist"));
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
     }
