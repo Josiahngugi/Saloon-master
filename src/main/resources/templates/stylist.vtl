@@ -23,3 +23,23 @@
             </form>
         </div>
     </div>
+    <div class=" col-sm-12 col-md-6">
+        <div class="text-center">
+            <br>
+            <h1>All Stylist</h1>
+        </div>
+        #foreach($stylist in $stylists)
+        <ul>
+            <li>
+                <div class="stylist">
+                    <h3>$stylist.getFname()  $stylist.getLname()</h3>
+                    <p><span style="text-info">Phone Number : </span>  $stylist.getPhone()</p>
+                    <p><span style="text-info">Email Address : </span>  $stylist.getEmail()</p>
+                    <p><a href="/getDetails/$stylist.getId()" class="btn btn-success btn-md">Full Details</a></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    #end
+</div>
+</div>
