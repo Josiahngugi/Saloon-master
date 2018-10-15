@@ -18,4 +18,9 @@ public class Db {
     public List<Stylist> all(){
         return con.createQuery("SELECT id,fname,lname,phone,email FROM stylist;").executeAndFetch(Stylist.class);
     }
+    public Stylist getStylist(double id){
+        return con.createQuery("SELECT id,fname,lname,phone,email FROM stylist  WHERE id=:id;")
+                .addParameter("id",id)
+                .executeAndFetchFirst(Stylist.class);
+    }
 }
