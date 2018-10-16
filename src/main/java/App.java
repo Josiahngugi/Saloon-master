@@ -17,7 +17,7 @@ public  class App{
             return new ModelAndView(model,"templates/layout.vtl");
         },new VelocityTemplateEngine());
 
-        post("/addStylist",(req,res)->{
+        post("/newStylist",(req,res)->{
             String id=req.queryParams("id");
             Stylist stylist=new Stylist(
                     Double.parseDouble(id),
@@ -68,7 +68,7 @@ public  class App{
         },new VelocityTemplateEngine());
 
 
-        post("/addClient",(req,res)->{
+        post("/newClient",(req,res)->{
             System.out.println(req.queryParams("stylist"));
             Client client=new Client(
                     1,
