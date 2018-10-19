@@ -37,7 +37,7 @@
 *The program will also enable the Saloon manager be able to assign a particular client to a specific stylist<br>
 *The program facilitates deletion and update of a specific stylist<br>
 * The program also allows deletion and update of clients as well as assigning them to specific stylists.<br>
-* Link to Live Site
+* Link to Live Site:https://intense-journey-19857.herokuapp.com/getDetails/13434.0
 
 ## Technologies Used
 
